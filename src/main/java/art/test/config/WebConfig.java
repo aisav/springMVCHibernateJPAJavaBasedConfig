@@ -1,5 +1,6 @@
 package art.test.config;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -49,7 +50,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         internalResourceViewResolver.setSuffix(".jsp");
         return internalResourceViewResolver;
     }
-/*
+
     @Bean(name = "messageSource")
     public ReloadableResourceBundleMessageSource getMessageSource() {
         ReloadableResourceBundleMessageSource resource = new ReloadableResourceBundleMessageSource();
@@ -58,10 +59,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return resource;
     }
 
-    @Bean
+/*    @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
-    }
+    }*/
 
     @Bean
     public static MessageSource messageSource() {
@@ -90,7 +91,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(localeChangeInterceptor());
     }
 
-    @Bean(name = "multipartResolver")
+//    TODO
+/*    @Bean(name = "multipartResolver")
     public CommonsMultipartResolver getMultipartResolver() {
         return new CommonsMultipartResolver();
     }*/

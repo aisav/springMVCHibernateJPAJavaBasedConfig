@@ -18,7 +18,7 @@
     <title>Welcome !!!</title>
 </head>
 <body>
-<h1>test<%--<spring:message code = "welcome.text"/>--%></h1>
+<h1><spring:message code = "welcome.text"/></h1>
 <a href="${pageContext.request.contextPath}/newblogpost.html">new</a>
 </body>
 </html>
