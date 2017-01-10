@@ -23,7 +23,7 @@ import java.util.Locale;
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = {"art.test"})
-//@PropertySource("classPath:app.properties")
+@PropertySource("classPath:app.properties")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -59,21 +59,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return resource;
     }
 
-/*    @Bean
+    @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
-    }*/
+    }
 
     @Bean
     public static MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("lang");
         messageSource.setDefaultEncoding("UTF-8");
-        return messageSource;
+        return  messageSource;
     }
 
     @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor() {
+    public LocaleChangeInterceptor localeChangeInterceptor(){
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("language");
         return localeChangeInterceptor;
@@ -83,7 +83,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public CookieLocaleResolver localeResolver() {
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
         cookieLocaleResolver.setDefaultLocale(Locale.ENGLISH);
-        return cookieLocaleResolver;
+        return  cookieLocaleResolver;
     }
 
     @Override
@@ -91,10 +91,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(localeChangeInterceptor());
     }
 
-//    TODO
-/*    @Bean(name = "multipartResolver")
+    /*    @Bean(name = "multipartResolver")
     public CommonsMultipartResolver getMultipartResolver() {
         return new CommonsMultipartResolver();
     }*/
 }
+
 

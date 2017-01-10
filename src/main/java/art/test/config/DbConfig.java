@@ -1,5 +1,9 @@
 package art.test.config;
 
+import art.test.service.BlogPostService;
+import art.test.service.UserService;
+import art.test.service.impl.BlogPostServiceImpl;
+import art.test.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +24,7 @@ import java.util.Properties;
 /**
  * Created by art on 10.01.2017.
  */
-//@EnableJpaRepositories(basePackages = {"art.test.dao"})
+@EnableJpaRepositories(basePackages = {"art.test.dao"})
 //@ComponentScan(basePackages = {"art.test.dao"})
 @EnableTransactionManagement
 @Configuration
@@ -60,7 +64,7 @@ public class DbConfig {
         return factoryBean;
     }
 
-/*    @Bean
+    @Bean
     public BlogPostService blogPostService(){
         return new BlogPostServiceImpl();
     }
@@ -76,6 +80,6 @@ public class DbConfig {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
         jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
         return  jpaTransactionManager;
-    }*/
+    }
 }
 
