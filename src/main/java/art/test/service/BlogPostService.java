@@ -14,5 +14,11 @@ public interface BlogPostService {
     void savePost(BlogPost blogPost);
     void saveAsDraft(BlogPost blogPost);
     void deletePost(BlogPost blogPost);
+    List<BlogPost> findAll();
+    List<BlogPost> findLatest5();
+    BlogPost findById(Long id);
+    BlogPost create(BlogPost post);
+    BlogPost edit(BlogPost post);
+    void deleteById(Long id);
     List<BlogPost> findAllByUserAndDraft(User user, boolean draft);
 }

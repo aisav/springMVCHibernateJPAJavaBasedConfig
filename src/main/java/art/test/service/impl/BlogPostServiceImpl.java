@@ -40,6 +40,36 @@ public class BlogPostServiceImpl implements BlogPostService {
     }
 
     @Override
+    public List<BlogPost> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<BlogPost> findLatest5() {
+        return null;
+    }
+
+    @Override
+    public BlogPost findById(Long id) {
+        return null;
+    }
+
+    @Override
+    public BlogPost create(BlogPost post) {
+        return null;
+    }
+
+    @Override
+    public BlogPost edit(BlogPost post) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
+    }
+
+    @Override
     public List<BlogPost> findAllByUserAndDraft(User user, boolean draft) {
         return blogPostDAO.findAllBlogPostsByUserAndDraft(user, draft);
     }
