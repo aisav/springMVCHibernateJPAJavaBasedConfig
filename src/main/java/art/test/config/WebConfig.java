@@ -1,11 +1,8 @@
 package art.test.config;
 
-import com.sun.xml.internal.bind.v2.TODO;
+//import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -24,6 +21,7 @@ import java.util.Locale;
 @Configuration
 @ComponentScan(basePackages = {"art.test"})
 @PropertySource("classPath:app.properties")
+@Import(value = SecurityConfig.class)
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -31,7 +29,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        super.addViewControllers(registry);
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/newblogpost.html").setViewName("newBlogPost");
-        registry.addViewController("/AccessDenied").setViewName("AccessDenied");
+        registry.addViewController("/accessDenied").setViewName("accessDenied");
+        registry.addViewController("/admin.html").setViewName("/admin/admin");
+
+
     }
 
     @Override
