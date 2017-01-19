@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: art
@@ -6,6 +6,8 @@
   Time: 15:48
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -41,7 +43,11 @@
         </table>
     </form>
 
-    <a href="${contextPath}/" ><button >To Home Page</button></a>
+    <a href="${contextPath}/" >
+        <button >
+            <spring:message code="user.home.page" />
+        </button>
+    </a>
 </div>
 </body>
 </html>

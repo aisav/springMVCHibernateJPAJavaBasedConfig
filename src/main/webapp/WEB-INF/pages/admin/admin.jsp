@@ -20,5 +20,10 @@
 <body>
 <h1>Admin</h1>
 <%--<a href="${pageContext.request.contextPath}/newblogpost.html">new</a>--%>
+<a href="${contextPath}/" >
+    <button >
+        <spring:message code="user.home.page" />
+    </button>
+</a>
 </body>
 </html>

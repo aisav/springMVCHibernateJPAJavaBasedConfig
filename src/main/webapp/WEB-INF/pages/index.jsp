@@ -22,11 +22,16 @@
 <body>
 <h1><spring:message code = "welcome.text"/></h1>
 <secuirity:authorize access="hasAnyRole('ADMIN', 'USER')">
+    <p><a href="${pageContext.request.contextPath}/admin.html">
+        <spring:message code="admin.dashboard" />
+    </a></p>
     <b>You are logged in as: </b><secuirity:authentication property="principal.username" />
     with the role of: <secuirity:authentication property="principal.authorities" />
     <br>
     <p><a href="<c:url value="/logout" /> ">Logout</a></p>
 </secuirity:authorize>
-<a href="${pageContext.request.contextPath}/newblogpost.html">new</a>
+<a href="${pageContext.request.contextPath}/newblogpost.html">
+    <spring:message code="user.create.blogpost" />
+</a>
 </body>
 </html>
