@@ -59,7 +59,7 @@ public class DbConfig {
         factoryBean.setDataSource(datasource());
         factoryBean.setPackagesToScan("art.test.domain");
         Properties jpaProperties = new Properties();
-        jpaProperties.setProperty("hibernate.hbm2ddl.auto","create-drop");
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto","update");
         factoryBean.setJpaProperties(jpaProperties);
         return factoryBean;
     }

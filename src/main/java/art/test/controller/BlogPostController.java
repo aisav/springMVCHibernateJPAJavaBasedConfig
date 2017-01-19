@@ -5,6 +5,7 @@ import art.test.domain.User;
 import art.test.service.BlogPostService;
 import art.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,9 +38,9 @@ public class BlogPostController {
         blogPost.setTitle(title);
         blogPost.setContent(content);
         blogPost.setPublishDate(new Date());
-//        blogPost.setUser(userService.findUserById(1L));
-        User user = userService.findByUsername("kk");
-        blogPost.setUser(user);
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userService.findByUsername(name);
+        blogPost.setUser(currentUser);
         if(draft) {
             blogPostService.saveAsDraft(blogPost);
         }
@@ -49,7 +50,7 @@ public class BlogPostController {
 
         System.out.println("========================================================================================");
 
-        List<BlogPost> blogPosts = blogPostService.findAllByUserAndDraft(user, true);
+        List<BlogPost> blogPosts = blogPostService.findAllByUserAndDraft(currentUser, true);
         if(blogPosts!=null) {
             System.out.println(blogPosts.size());
         }
