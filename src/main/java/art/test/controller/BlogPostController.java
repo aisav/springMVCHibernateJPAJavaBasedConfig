@@ -75,4 +75,14 @@ public class BlogPostController {
         model.setViewName("admin/admin");
         return model;
     }
+
+    @RequestMapping(value = "/blogposts", method = RequestMethod.GET)
+    @Secured("ROLE_USER")
+    public ModelAndView blogposts() {
+        ModelAndView model = new ModelAndView();
+        List<BlogPost> blogposts = blogPostService.findAll();
+        model.addObject("blogposts", blogposts);
+        model.setViewName("blogposts");
+        return model;
+    }
 }

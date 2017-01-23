@@ -39,5 +39,9 @@
 <a href="${pageContext.request.contextPath}/newblogpost.html">
     <spring:message code="user.create.blogpost" />
 </a>
+
+<p><a href="<c:url value="/blogposts" />" >
+    <spring:message code="user.all.blogposts" />
+</a></p>
 </body>
 </html>
