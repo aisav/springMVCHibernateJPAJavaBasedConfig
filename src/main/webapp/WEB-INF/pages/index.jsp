@@ -22,8 +22,14 @@
 <body>
 <h1><spring:message code = "welcome.text"/></h1>
 <secuirity:authorize access="hasAnyRole('ADMIN', 'USER')">
-    <p><a href="${pageContext.request.contextPath}/admin.html">
+
+    <p><a href="<c:url value="/admin/${11}" />" >
         <spring:message code="admin.dashboard" />
+    </a></p>
+
+
+    <p><a href="${pageContext.request.contextPath}/admin.html">
+        <spring:message code="admin.dashboard.link.to.view" />
     </a></p>
     <b>You are logged in as: </b><secuirity:authentication property="principal.username" />
     with the role of: <secuirity:authentication property="principal.authorities" />

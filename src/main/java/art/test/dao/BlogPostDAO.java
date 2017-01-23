@@ -13,5 +13,7 @@ public interface BlogPostDAO extends CrudRepository<BlogPost, Long> {
 
     List<BlogPost> findAllBlogPostsByUserAndTitleContaining(User user, String title);
     List<BlogPost> findAllBlogPostsByUserAndDraft(User user, boolean draft);
+    List<BlogPost> findAllBlogPostsByUser(User user);
+
 
 }

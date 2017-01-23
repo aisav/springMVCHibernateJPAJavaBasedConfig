@@ -2,6 +2,7 @@ package art.test.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,6 +14,7 @@ import javax.sql.DataSource;
  * Created by art on 11.01.2017.
  */
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -40,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin**").access("hasRole('ADMIN')")
+                .antMatchers("/admin**").hasRole("ADMIN")
                 .antMatchers("/*").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and()

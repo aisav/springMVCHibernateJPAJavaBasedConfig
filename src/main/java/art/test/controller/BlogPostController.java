@@ -5,8 +5,10 @@ import art.test.domain.User;
 import art.test.service.BlogPostService;
 import art.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,5 +61,18 @@ public class BlogPostController {
 
 
         return new ModelAndView("newBlogPost", "message", "The BlogPost is saved");
+    }
+
+    @RequestMapping(value = "/admin/{fromViewParam}", method = RequestMethod.GET)
+    @Secured("ROLE_ADMIN")
+    public ModelAndView toAdmin(
+            @PathVariable("fromViewParam") String fromViewParam) {
+
+        ModelAndView model = new ModelAndView();
+        List<User> users = userService.findAll();
+        model.addObject("users", users);
+        model.addObject("message", fromViewParam);
+        model.setViewName("admin/admin");
+        return model;
     }
 }

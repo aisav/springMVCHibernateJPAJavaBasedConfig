@@ -1,10 +1,12 @@
 package art.test.service.impl;
 
 import art.test.dao.BlogPostDAO;
+import art.test.dao.UserDAO;
 import art.test.domain.BlogPost;
 import art.test.domain.User;
 import art.test.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +18,9 @@ public class BlogPostServiceImpl implements BlogPostService {
 
     @Autowired
     private BlogPostDAO blogPostDAO;
+
+    @Autowired
+    private UserDAO userDAO;
 
     @Override
     public void savePost(BlogPost blogPost) {
@@ -41,7 +46,11 @@ public class BlogPostServiceImpl implements BlogPostService {
 
     @Override
     public List<BlogPost> findAll() {
-        return null;
+
+
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userDAO.findUserByUsername(name);
+        return blogPostDAO.findAllBlogPostsByUser(currentUser);
     }
 
     @Override
