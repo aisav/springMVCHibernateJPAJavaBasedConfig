@@ -20,11 +20,23 @@
 </head>
 <body>
 <h1>Admin</h1>
-<c:forEach items="${users}" var="item">
-    ${item.username}<br>
-    ${item.id}<br>
-</c:forEach>
+
+<table border="1" cellpadding="5">
+<caption><h3>List of users</h3></caption>
+    <tr>
+        <th>        <spring:message code="user.id.table" /></th>
+        <th>        <spring:message code="user.username.table" /></th>
+    </tr>
+    <c:forEach items="${users}" var="currentUser" varStatus="status">
+        <tr>
+            <td>${currentUser.id}</td>
+            <td>${currentUser.username}</td>
+        </tr>
+    </c:forEach>
+</table>
+
 <%--<a href="${pageContext.request.contextPath}/newblogpost.html">new</a>--%>
+<br>
 <a href="${contextPath}/" >
     <button >
         <spring:message code="user.home.page" />
