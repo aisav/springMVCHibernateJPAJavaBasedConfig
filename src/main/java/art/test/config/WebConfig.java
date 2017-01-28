@@ -31,6 +31,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/newblogpost.html").setViewName("newBlogPost");
         registry.addViewController("/accessDenied").setViewName("accessDenied");
         registry.addViewController("/admin.html").setViewName("/admin/admin");
+        registry.addViewController("/login").setViewName("login");
+
 
 
     }

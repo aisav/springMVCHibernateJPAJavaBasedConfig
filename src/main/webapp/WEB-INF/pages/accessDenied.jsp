@@ -12,6 +12,9 @@
     <title>Access is denied</title>
 </head>
 <body>
+<%--<jsp:include page="navbar.jsp"/>--%>
+<%@include file="navbar.jsp" %>
+
 <div class = "container">
     <h1>Access is denied</h1>
 </div>

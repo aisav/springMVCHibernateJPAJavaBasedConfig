@@ -19,6 +19,9 @@
     <title>Welcome !!!</title>
 </head>
 <body>
+<%--<jsp:include page="../navbar.jsp"/>--%>
+<%@include file="../navbar.jsp" %>
+
 <h1>Admin</h1>
 
 <table border="1" cellpadding="5">

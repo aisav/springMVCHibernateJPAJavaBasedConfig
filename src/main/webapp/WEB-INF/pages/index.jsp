@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: art
@@ -12,39 +11,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-
     <title>Welcome !!!</title>
 </head>
 <body>
-<h1><spring:message code = "welcome.text"/></h1>
+<%--<jsp:include page="navbar.jsp"/>--%>
+<%@include file="navbar.jsp" %>
 
-    <p><a href="<c:url value="/admin/${11}" />" >
-        <spring:message code="admin.dashboard" />
+<div class="container">
+    <h1><spring:message code="welcome.text"/></h1>
+
+    <p><a href="<c:url value="/admin/${11}" />">
+        <spring:message code="admin.dashboard"/>
     </a></p>
 
 
     <p><a href="${pageContext.request.contextPath}/admin.html">
-        <spring:message code="admin.dashboard.link.to.view" />
+        <spring:message code="admin.dashboard.link.to.view"/>
     </a></p>
 
-<a href="${pageContext.request.contextPath}/newblogpost.html">
-    <spring:message code="user.create.blogpost" />
-</a>
 
-<p><a href="<c:url value="/blogposts" />" >
-    <spring:message code="user.all.blogposts" />
-</a></p>
-<secuirity:authorize access="hasAnyRole('ADMIN', 'USER')">
+    <secuirity:authorize access="hasAnyRole('ADMIN', 'USER')">
 
-<b>You are logged in as: </b><secuirity:authentication property="principal.username" />
-with the role of: <secuirity:authentication property="principal.authorities" />
-<br>
-<p><a href="<c:url value="/logout" /> ">Logout</a></p>
-</secuirity:authorize>
-
+        <b>You are logged in as: </b><secuirity:authentication property="principal.username"/>
+        with the role of: <secuirity:authentication property="principal.authorities"/>
+        <br><p></p>
+    </secuirity:authorize>
+</div>
 </body>
 </html>
