@@ -21,6 +21,9 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Transient
+    private String confirmPassword;
+
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
@@ -49,6 +52,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public boolean isEnabled() {
