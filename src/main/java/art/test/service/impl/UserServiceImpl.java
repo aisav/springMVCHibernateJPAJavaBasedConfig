@@ -1,9 +1,11 @@
 package art.test.service.impl;
 
 import art.test.dao.UserDAO;
+import art.test.domain.Role;
 import art.test.domain.User;
 import art.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -15,6 +17,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
     public User findUserById(Long id) {
         return userDAO.findOne(id);
@@ -37,8 +41,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(User user) {
-        return null;
+    public void save(User user) {
+
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        user.setr Roles(new HashSet<>(roleRepository.findAll()));
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(new Role());
+        userDAO.save(user);
     }
 
     @Override

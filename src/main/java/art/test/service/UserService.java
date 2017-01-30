@@ -12,7 +12,7 @@ public interface UserService {
     User findByUsername(String username);
     List<User> findAll();
     User findById(Long id);
-    User create(User user);
+    void save(User user);
     User edit(User user);
     void deleteById(Long id);
 }

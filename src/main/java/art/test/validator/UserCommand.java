@@ -23,11 +23,11 @@ public class UserCommand implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "error.user.confirmPassword.required");
 
 //        Custom validations
-        if(user.getUsername().length()<2){
+        if(user.getUsername().length()<4){
             errors.rejectValue("username", "error.user.username.length");
         }
 
-        if(user.getPassword() != user.getConfirmPassword()) {
+        if(!user.getPassword().equals(user.getConfirmPassword())) {
             errors.rejectValue("confirmPassword", "error.user.confirmPassword.same");
 
         }

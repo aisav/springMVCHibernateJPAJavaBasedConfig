@@ -24,8 +24,23 @@ public class User {
     @Transient
     private String confirmPassword;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinTable(name="user_role",
+            joinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")},
+            inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}
+    )
+    private Role role;
+
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<BlogPost> blogPosts;

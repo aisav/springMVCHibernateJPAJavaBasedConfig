@@ -17,6 +17,8 @@
     <form:form modelAttribute="user" method="POST" enctype="utf8">
         <br>
 
+        <form:hidden path="id" />
+
         <tr>
             <td>
                 <label>

@@ -70,6 +70,7 @@ public class UserController {
         }
         else {
             System.out.println("Noo error");
+            userService.save(user);
         }
         return model;//new ModelAndView("index");   //"redirect:viewName";
 
