@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin**").hasRole("ADMIN")
+                .antMatchers("/user/registration").permitAll()
                 .antMatchers("/*").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
 //                .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)

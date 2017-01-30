@@ -63,19 +63,6 @@ public class BlogPostController {
         return new ModelAndView("newBlogPost", "message", "The BlogPost is saved");
     }
 
-    @RequestMapping(value = "/admin/{fromViewParam}", method = RequestMethod.GET)
-    @Secured("ROLE_ADMIN")
-    public ModelAndView toAdmin(
-            @PathVariable("fromViewParam") String fromViewParam) {
-
-        ModelAndView model = new ModelAndView();
-        List<User> users = userService.findAll();
-        model.addObject("users", users);
-        model.addObject("message", fromViewParam);
-        model.setViewName("admin/admin");
-        return model;
-    }
-
     @RequestMapping(value = "/blogposts", method = RequestMethod.GET)
     @Secured("ROLE_USER")
     public ModelAndView blogposts() {

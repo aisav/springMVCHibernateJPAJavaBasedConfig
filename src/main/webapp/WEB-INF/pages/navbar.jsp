@@ -20,11 +20,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Spring Bootstrap 3</a>
+            <a class="navbar-brand" href="<c:url value="/" />">Home</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="<c:url value="/" />">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/newblogpost.html">        <spring:message code="user.create.blogpost"/></a></li>
                 <li><a href="<c:url value="/blogposts" />">        <spring:message code="user.all.blogposts"/></a></li>
 

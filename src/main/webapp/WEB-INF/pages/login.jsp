@@ -28,5 +28,10 @@
         </fieldset>
     </form>
 </div>
+<div>
+    <a href="<c:url value="/user/registration" />">
+        Create new User
+    </a>
+</div>
 </body>
 </html>
