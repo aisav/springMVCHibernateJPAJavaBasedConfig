@@ -1,5 +1,6 @@
 package art.test.service.impl;
 
+import art.test.dao.RoleDAO;
 import art.test.dao.UserDAO;
 import art.test.domain.Role;
 import art.test.domain.User;
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private RoleDAO roleDAO;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -46,7 +50,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 //        user.setr Roles(new HashSet<>(roleRepository.findAll()));
 //        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(new Role());
+        user.setRole(roleDAO.findRoleById(1));
         userDAO.save(user);
     }
 
