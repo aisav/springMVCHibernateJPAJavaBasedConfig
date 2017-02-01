@@ -13,6 +13,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
+
     private Long id;
 
     @Column(name = "username", nullable = false)
@@ -24,23 +25,24 @@ public class User {
     @Transient
     private String confirmPassword;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinTable(name="user_role",
-            joinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")},
-            inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}
+            joinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")},
+            inverseJoinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")}
     )
-    private Role role;
+    private List<Role> roles;
 
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
-    public Role getRole() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
+
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<BlogPost> blogPosts;

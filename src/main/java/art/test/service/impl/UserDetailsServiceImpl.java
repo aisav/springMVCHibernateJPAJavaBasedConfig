@@ -43,14 +43,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 (user.getUsername(),
                         user.getPassword().toLowerCase(), enabled, accountNonExpired,
                         credentialsNonExpired, accountNonLocked,
-                        getAuthorities(user.getRole()));
+                        getAuthorities(user.getRoles()));
     }
 
-    private static List<GrantedAuthority> getAuthorities (Role role) {
+    private static List<GrantedAuthority> getAuthorities (List<Role> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-//        for (String role : roles) {
+        for (Role role : roles) {
             authorities.add(new SimpleGrantedAuthority(role.getRole()));
-//        }
+        }
         return authorities;
     }
 }

@@ -8,6 +8,8 @@ import art.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -50,7 +52,10 @@ public class UserServiceImpl implements UserService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 //        user.setr Roles(new HashSet<>(roleRepository.findAll()));
 //        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(roleDAO.findRoleById(1));
+//        List<Role> roles= new ArrayList<>();
+//        roles.add(roleDAO.findRoleById(1));
+        user.setRoles(roleDAO.findAll());
+        user.setEnabled(true);
         userDAO.save(user);
     }
 

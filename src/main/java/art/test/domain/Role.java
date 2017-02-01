@@ -1,6 +1,7 @@
 package art.test.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,7 +22,7 @@ public class Role {
             joinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")},
             inverseJoinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")}
     )
-    private Set<User> userrole;
+    private List<User> users;
 
     public Integer getId() {
         return id;
@@ -39,12 +40,12 @@ public class Role {
         this.role = role;
     }
 
-    public Set<User> getUserrole() {
-        return userrole;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUserrole(Set<User> userrole) {
-        this.userrole = userrole;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 }
