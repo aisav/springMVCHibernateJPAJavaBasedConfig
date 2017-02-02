@@ -66,7 +66,7 @@ public class UserController {
         UserCommand userCommand = new UserCommand();
         userCommand.validate(user, result);
         model.addObject("user", user);
-        model.setViewName("registration");
+        model.setViewName("index");
         if(result.hasErrors()) {
             System.out.println("With error");
         }

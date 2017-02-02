@@ -49,12 +49,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
 
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getConfirmPassword()));
 //        user.setr Roles(new HashSet<>(roleRepository.findAll()));
 //        user.setPassword(passwordEncoder.encode(user.getPassword()));
 //        List<Role> roles= new ArrayList<>();
 //        roles.add(roleDAO.findRoleById(1));
-        user.setRoles(roleDAO.findAll());
+        user.setRoles(Arrays.asList(roleDAO.findRoleById(1)));
+        roleDAO.findRoleById(1).setUsers(Arrays.asList(user));
         user.setEnabled(true);
         userDAO.save(user);
     }
