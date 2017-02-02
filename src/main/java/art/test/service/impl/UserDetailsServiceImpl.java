@@ -1,5 +1,6 @@
 package art.test.service.impl;
 
+import art.test.dao.UserDAO;
 import art.test.domain.Role;
 import art.test.domain.User;
 import art.test.service.UserService;
@@ -21,16 +22,15 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserService userService;
+    private UserDAO userDAO;
 
     static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Map<String, Object> userMap = userService.getUserByUsername(s);
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
 
-        User user = userService.findByUsername(username);
-
+        User user = userDAO.findUserByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(
                     "No user found with username: "+ username);
