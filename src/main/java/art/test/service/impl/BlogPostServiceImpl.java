@@ -7,6 +7,7 @@ import art.test.domain.User;
 import art.test.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by art on 18.12.2016.
  */
+@Service
 public class BlogPostServiceImpl implements BlogPostService {
 
     @Autowired

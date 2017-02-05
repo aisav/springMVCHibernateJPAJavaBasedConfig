@@ -1,6 +1,7 @@
 package art.test.controller;
 
 import art.test.domain.User;
+import art.test.service.SecurityService;
 import art.test.service.UserService;
 import art.test.validator.UserCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SecurityService securityService;
 
     @RequestMapping(value = "/admin/{fromViewParam}", method = RequestMethod.GET)
     @Secured("ROLE_ADMIN")
@@ -66,15 +70,20 @@ public class UserController {
         UserCommand userCommand = new UserCommand();
         userCommand.validate(user, result);
         model.addObject("user", user);
-        model.setViewName("index");
+        model.setViewName("registration");
         if(result.hasErrors()) {
             System.out.println("With error");
+            return model;
         }
         else {
             System.out.println("Noo error");
-            userService.save(user);
+
+//            userService.save(user);
+//            securityService.autologin(user.getUsername(), user.getPassword());
+
+            return new ModelAndView("index");
         }
-        return model;//new ModelAndView("index");   //"redirect:viewName";
+//        return model;//new ModelAndView("index");   //"redirect:viewName";
 
     }
 

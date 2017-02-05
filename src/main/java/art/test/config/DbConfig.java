@@ -6,6 +6,7 @@ import art.test.service.impl.BlogPostServiceImpl;
 import art.test.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -25,7 +26,7 @@ import java.util.Properties;
  * Created by art on 10.01.2017.
  */
 @EnableJpaRepositories(basePackages = {"art.test.dao"})
-//@ComponentScan(basePackages = {"art.test.dao"})
+@ComponentScan(basePackages = {"art.test.dao"})
 @EnableTransactionManagement
 @Configuration
 public class DbConfig {
@@ -45,6 +46,19 @@ public class DbConfig {
     }
 
     @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+        factoryBean.setDataSource(datasource());
+        factoryBean.setPackagesToScan("art.test.domain");
+        Properties jpaProperties = new Properties();
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto","update");
+        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        factoryBean.setJpaProperties(jpaProperties);
+        return factoryBean;
+    }
+
+    @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.MYSQL);
@@ -53,16 +67,14 @@ public class DbConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-        factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-        factoryBean.setDataSource(datasource());
-        factoryBean.setPackagesToScan("art.test.domain");
-        Properties jpaProperties = new Properties();
-        jpaProperties.setProperty("hibernate.hbm2ddl.auto","update");
-        factoryBean.setJpaProperties(jpaProperties);
-        return factoryBean;
+    public JpaTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        return transactionManager;
     }
+
+
+/*
 
     @Bean
     public BlogPostService blogPostService(){
@@ -74,12 +86,7 @@ public class DbConfig {
         return new UserServiceImpl();
     }
 
-    @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
+*/
 
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
-        return  jpaTransactionManager;
-    }
 }
 

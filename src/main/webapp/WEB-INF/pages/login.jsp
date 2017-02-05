@@ -30,7 +30,7 @@
 </div>
 <div>
     <a href="<c:url value="/user/registration" />">
-        Create new User
+        <spring:message code="user.validation.registration" />
     </a>
 </div>
 </body>
